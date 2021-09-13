@@ -1,0 +1,22 @@
+body {
+  background-color: #eaf6f6;
+}
+
+hr {
+  border-style: none;
+  border-top-style: dotted;
+  border-color: grey;
+  height: 0px;
+  width: 5%;
+  border-width: thick;
+}
+
+h1 {
+    color: #66BFBF;
+    text-shadow: 2px 2px 5px grey;
+}
+
+h3 {
+    color: #66BFBF;
+    text-transform: uppercase;
+}
