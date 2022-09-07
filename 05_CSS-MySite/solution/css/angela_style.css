@@ -1,0 +1,152 @@
+/************************************TAG SECTION************************************/
+body {
+  margin: 0;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  color: #40514E;
+}
+
+h1 {
+  margin: 0 auto 0 auto;
+  font-family: "Sacramento", cursive;
+  font-size: 5.625rem;
+  line-height: 2;
+  color: #66bfbf;
+  padding-top: 150px;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: #66bfbf;
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  color: #11999e;
+}
+
+hr {
+  border: 6px dotted #eaf6f6;
+  border-bottom: none;
+  width: 4%;
+  margin: 100px auto;
+}
+
+a{
+    text-decoration: none;
+    color: #11999e;
+    font-family: "Montserrat", sans-serif;
+    margin: 10px 20px;
+}
+
+a:hover{
+  color: #EAF6F6;
+}
+
+p{
+  line-height: 2;
+}
+
+/***********************************CLASS SECTION***********************************/
+.pro {
+  text-decoration: underline;
+}
+
+.top-container {
+  background-color: #eaf6f6;
+  padding-top: 100px;
+}
+
+.middle-container{
+  padding: 100px 0;
+}
+
+.intro{
+  width: 30%;
+  margin: auto;
+}
+
+.top-cloud {
+  position: absolute;
+  right: 300px;
+  top: 40px;
+}
+
+.bottom-cloud {
+  position: absolute;
+  left: 250px;
+}
+
+.skill-row{
+    width: 50%;
+    text-align: left;
+    margin: 100px auto;
+}
+
+.programming-skill-image{
+    float: left;
+    width: 25%;
+    margin-right: 30px;
+}
+
+.chillies-skill-image{
+    float: right;
+    width: 25%;
+    margin-left: 30px;
+}
+
+.contact-message{
+  width: 40%;
+  margin: 40px auto 60px;
+}
+
+.bottom-container{
+    background-color: #66bfbf;
+    padding: 50px 0 20px;
+    margin-top: 60px;
+
+}
+
+.copyright{
+    color: #EAF6F6;
+    padding-top: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.BUTTON_LSK {
+    background: #11CDD4;
+    background-image: -webkit-linear-gradient(top, #11CDD4, #11999E);
+    background-image: -moz-linear-gradient(top, #11CDD4, #11999E);
+    background-image: -ms-linear-gradient(top, #11CDD4, #11999E);
+    background-image: -o-linear-gradient(top, #11CDD4, #11999E);
+    background-image: -webkit-gradient(to bottom, #11CDD4, #11999E);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 8;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
+ }
+ 
+ .BUTTON_LSK:hover {
+    background: #30E3CE;
+    background-image: -webkit-linear-gradient(top, #30E3CB, #2BC4AD);
+    background-image: -moz-linear-gradient(top, #30E3CB, #2BC4AD);
+    background-image: -ms-linear-gradient(top, #30E3CB, #2BC4AD);
+    background-image: -o-linear-gradient(top, #30E3CB, #2BC4AD);
+    background-image: -webkit-gradient(to bottom, #30E3CB, #2BC4AD);
+    text-decoration: none;
+ }
+/*************************************ID SECTION************************************/
