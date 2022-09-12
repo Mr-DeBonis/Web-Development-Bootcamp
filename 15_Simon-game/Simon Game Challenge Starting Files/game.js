@@ -12,4 +12,9 @@ console.log(randomChosenColour);
 
 gamePattern.push(randomChosenColour);
 
-myButton = $(randomChosenColour);
+$('#' + randomChosenColour).fadeOut(200).fadeIn(200);
+
+// Play button sound
+var buttonSound = new Audio('./sounds/' + randomChosenColour + '.mp3');
+buttonSound.play()
+
