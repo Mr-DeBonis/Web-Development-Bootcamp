@@ -5,23 +5,28 @@ var userClickedPattern = [];
 
 function nextSequence() {
     var randomNumber = Math.floor(Math.random()*4);
-    return randomNumber;
+    var randomChosenColour = buttonColours[randomNumber];
+
+    //console.log(randomChosenColour);
+
+    gamePattern.push(randomChosenColour);
+    $('#' + randomChosenColour).fadeOut(200).fadeIn(200);
+    // Play button sound
+    playSound(randomChosenColour);
 }
 
-var randomChosenColour = buttonColours[nextSequence()];
+function playSound(name){
+    var sound = new Audio('./sounds/' + name + '.mp3');
+    sound.play();
+}
 
-//console.log(randomChosenColour);
 
-gamePattern.push(randomChosenColour);
-
-$('#' + randomChosenColour).fadeOut(200).fadeIn(200);
-
-// Play button sound
-var buttonSound = new Audio('./sounds/' + randomChosenColour + '.mp3');
-buttonSound.play();
+nextSequence();
 
 $(".btn").click(function() {
     var userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
-    console.log(userClickedPattern);
+
+    playSound(userChosenColour);
+    
 });
