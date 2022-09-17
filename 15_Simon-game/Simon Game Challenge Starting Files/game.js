@@ -21,12 +21,25 @@ function playSound(name){
 }
 
 
+async function animatePress(currentColour){
+    $('#' + currentColour).addClass("pressed");
+    await sleep(100);
+    $('#' + currentColour).removeClass("pressed");
+}
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+//////////////////////////////////////////////////
 nextSequence();
 
 $(".btn").click(function() {
     var userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
-
     playSound(userChosenColour);
+    animatePress(userChosenColour);
     
 });
