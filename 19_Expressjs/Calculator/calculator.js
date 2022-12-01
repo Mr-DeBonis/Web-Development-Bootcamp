@@ -24,3 +24,16 @@ app.post("/", function (request, response) {
 
     response.send("Your result is " + result);
 });
+
+app.get("/bmicalculator", function (request, response) {
+    response.sendFile(__dirname + "/bmiCalculator.html");
+});
+
+app.post("/bmicalculator", function (request, response) {
+    height = parseFloat(request.body.height);
+    weight = parseFloat(request.body.weight);
+
+    var bmi = weight / height ** 2;
+
+    response.send("Your BMI is " + bmi);
+});
