@@ -5,20 +5,16 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function (req, res) {
     var today = new Date();
-    var currentDay = today.getDay();
+    var day = days[today.getDay()];
 
-    if (currentDay === 6 || currentDay === 0){
-        res.write("<h1>Yay It's the weekend!</h1>");
-    } else{
-        res.write("<p>It's not the weekend</p>");
-        res.write("<h1>Boo! I have to work!</h1>");
-    }
-    res.send();
+    res.render('list', {kindOfDay : day});
 })
 
 app.listen(3000, function () {
