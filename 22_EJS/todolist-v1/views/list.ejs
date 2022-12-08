@@ -1,17 +1,35 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To Do List</title>
+        <link href="/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="box" id="heading">
+            <h1>It's <%=kindOfDay %>!</h1>
+        </div>
 
-    <% if({kindOfDay} === "Saturday" || {kindOfDay} === "Sunday" ){%> 
-        <h1 style="color:purple">It's <%=kindOfDay %>! </h1>
-    <% } else { %>
-        <h1 style="color:blue">It's <%=kindOfDay %>! </h1>
-    <% } %> 
-</body>
+        <div class="box">
+            <% nextItems.forEach(nextItem => { %>
+            <div class="item">
+                <input type="checkbox" />
+                <p><%= nextItem %></p>
+            </div>
+            <% }) %>
+            <form action="/" method="post">
+                <input
+                    type="text"
+                    placeholder="New Item"
+                    name="nextItem"
+                    autocomplete="off"
+                />
+                <button type="submit" name="button">+</button>
+            </form>
+        </div>
+    </body>
 </html>
