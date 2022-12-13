@@ -1,7 +1,5 @@
 bootstrap-4.5.3-dist*
 node_modules
-package-lock.json
-package.json
 .gitsecret/keys/random_seed
 !*.secret
 20_API/Newsletter-Signup/keys.json
