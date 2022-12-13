@@ -34,18 +34,22 @@ app.get("/contact", function (req, res) {
     res.render("contact", { contactContent: contactContent });
 });
 
-app.get("/compose", function (req, res) {
-    res.render("compose");
-});
+app.route("/compose")
+    .get(function (req, res) {
+        res.render("compose");
+    })
+    .post(function (req, res) {
+        const post = {
+            title: req.body.postTitle,
+            content: req.body.postBody,
+        };
 
-app.post("/compose", function (req, res) {
-    const post = {
-        title: req.body.postTitle,
-        content: req.body.postBody,
-    };
+        posts.push(post);
+        res.redirect("/");
+    });
 
-    posts.push(post);
-    res.redirect("/");
+app.get("/posts/:postName", function (req, res) {
+    console.log(req.params.postName);
 });
 
 app.listen(3000, function () {
