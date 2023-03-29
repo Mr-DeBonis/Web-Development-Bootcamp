@@ -71,6 +71,7 @@ Fruit.insertMany([kiwi, orange, banana])
 */
 
 // Log every fruit name from database
+/*
 Fruit.find()
 .then(function (fruits) {
         // Close connection to DB
@@ -83,3 +84,16 @@ Fruit.find()
     .catch(function (err) {
         console.log(err)
     })
+*/
+
+async function run(){
+    const fruitsFound = await Fruit.find({}).exec();
+
+    mongoose.connection.close();
+    
+    fruitsFound.forEach(fruit =>{
+        console.log(fruit.name);
+    })
+}
+
+run();
