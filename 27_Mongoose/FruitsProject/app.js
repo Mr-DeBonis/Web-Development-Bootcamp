@@ -31,7 +31,8 @@ const fruit = new Fruit({
 // Create person schema
 const personSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favouriteFruit: fruitSchema
 });
 
 // Create model (collection name is 'Person')
@@ -44,7 +45,27 @@ const person = new Person({
 // person.save();
 // console.log("Person saved to DB");
 
-////////////////////////////////////////////////////7
+/////////////////////////////////////////////////////
+// Relationships
+const pineapple = new Fruit({
+    name: "Pineapple",
+    score: 9,
+    review: "Great fruit."
+});
+
+const amy = new Person({
+    name: "Amy",
+    age: 9,
+    favouriteFruit: pineapple
+})
+
+const mango = new Fruit({
+    name: "Mango",
+    score: 8,
+    review: "Super juicy!"
+});
+
+/////////////////////////////////////////////////////
 // Insert several fruits at once
 
 const kiwi = new Fruit({
@@ -68,8 +89,11 @@ const banana = new Fruit({
 async function run() {
     // Save singular entry
     // await fruit.save();
-    await person.save();
-
+    // await person.save();
+    // await pineapple.save();
+    // await amy.save();
+    // await mango.save();
+    
     //Insert many
     //await Fruit.insertMany([kiwi, orange, banana]);
     
@@ -79,6 +103,8 @@ async function run() {
         score: 10,
         review: "It's really juicy and sweet!"
     });
+
+    await Person.updateOne({name: "John"}, {favouriteFruit:mango});
 
     //Delete an entry
     // await Fruit.deleteOne({_id: "64245c19ca3f0854e8bff05d"});
