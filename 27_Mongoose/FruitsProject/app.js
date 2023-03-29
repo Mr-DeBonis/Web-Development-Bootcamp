@@ -60,7 +60,7 @@ const banana = new Fruit({
     score: 3,
     review: "Weird texture"
 });
-
+/* 
 Fruit.insertMany([kiwi, orange, banana])
     .then(function () {
         console.log("Succesfully saved all the fruits to fruitsDB!");
@@ -68,3 +68,18 @@ Fruit.insertMany([kiwi, orange, banana])
     .catch(function (err) {
         console.log(err);
     });
+*/
+
+// Log every fruit name from database
+Fruit.find()
+.then(function (fruits) {
+        // Close connection to DB
+        mongoose.connection.close();
+        
+        fruits.forEach(function (fruit) {
+            console.log(fruit.name);
+        });
+    })
+    .catch(function (err) {
+        console.log(err)
+    })
