@@ -6,8 +6,15 @@ mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB", { useNewUrlParser: true });
 
 // Create fruits schema
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: {
+        type: String,
+        required: [true, "Please check your data entry, no name specified!"]
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
@@ -19,9 +26,6 @@ const fruit = new Fruit({
     rating: 7,
     review: "Pretty solid as fruit."
 });
-
-//fruit.save();
-//console.log("Fruit saved to DB");
 
 ////////////////////////////////////////////////////7
 // Create person schema
@@ -60,38 +64,21 @@ const banana = new Fruit({
     score: 3,
     review: "Weird texture"
 });
-/* 
-Fruit.insertMany([kiwi, orange, banana])
-    .then(function () {
-        console.log("Succesfully saved all the fruits to fruitsDB!");
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
-*/
 
-// Log every fruit name from database
-/*
-Fruit.find()
-.then(function (fruits) {
-        // Close connection to DB
-        mongoose.connection.close();
-        
-        fruits.forEach(function (fruit) {
-            console.log(fruit.name);
-        });
-    })
-    .catch(function (err) {
-        console.log(err)
-    })
-*/
+async function run() {
+    // Save singular fruit
+    // await fruit.save();
 
-async function run(){
-    const fruitsFound = await Fruit.find({}).exec();
+    //Insert many
+    //await Fruit.insertMany([kiwi, orange, banana]);
 
+    // Log every fruit name from database
+    const fruitsFound = await Fruit.find({});
+
+    // Close connection
     mongoose.connection.close();
-    
-    fruitsFound.forEach(fruit =>{
+
+    fruitsFound.forEach(fruit => {
         console.log(fruit.name);
     })
 }
