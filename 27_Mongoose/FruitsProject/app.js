@@ -66,11 +66,25 @@ const banana = new Fruit({
 });
 
 async function run() {
-    // Save singular fruit
+    // Save singular entry
     // await fruit.save();
+    await person.save();
 
     //Insert many
     //await Fruit.insertMany([kiwi, orange, banana]);
+    
+    //Update an entry 
+    await Fruit.updateOne({ _id: "64245dc1632c362a7f74ad85" }, {
+        name: "Peach",
+        score: 10,
+        review: "It's really juicy and sweet!"
+    });
+
+    //Delete an entry
+    // await Fruit.deleteOne({_id: "64245c19ca3f0854e8bff05d"});
+
+    // Delete a collection
+    // await Person.deleteMany({ name: "John" });
 
     // Log every fruit name from database
     const fruitsFound = await Fruit.find({});
