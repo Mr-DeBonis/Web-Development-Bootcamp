@@ -1,6 +1,7 @@
 # Sections
 - [Sections](#sections)
 - [The Complete 2022 Web Development Bootcamp](#the-complete-2022-web-development-bootcamp)
+- [Node modules](#node-modules)
 - [Software Installation (On Windows 10)](#software-installation-on-windows-10)
   - [Mongo DB](#mongo-db)
   - [Mongo shell](#mongo-shell)
@@ -12,6 +13,11 @@
 
 My follow up of [Dr. Angela Yu's Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/)
 
+# Node modules
+To install the node modules from a `package.json` file, just run
+```
+npm i
+```
 # Software Installation (On Windows 10)
 ## Mongo DB
 1. Download the community version from [here](https://www.mongodb.com/try/download/community). 
