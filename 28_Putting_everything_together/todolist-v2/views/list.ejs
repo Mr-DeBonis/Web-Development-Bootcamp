@@ -7,12 +7,14 @@
 
 <div class="box">
     <% nextItems.forEach(nextItem => { %>
-    <div class="item">
-        <input type="checkbox" />
-        <p><%= nextItem %></p>
-    </div>
+    <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" name="checkbox" value="<%=nextItem._id%>" onchange="this.form.submit()" />
+            <p><%= nextItem.name %></p>
+        </div>
+    </form>
     <% }) %>
-    <form action="/" method="post">
+    <form class="item" action="/" method="post">
         <input
             type="text"
             placeholder="New Item"

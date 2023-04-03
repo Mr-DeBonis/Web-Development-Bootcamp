@@ -38,22 +38,28 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
-Item.insertMany(defaultItems)
-    .then(function () {
-        console.log("Succesfully saved default items to DB.");
-    })
-    .catch(function (error, docs) {
-        console.log(error);
-    });
-
 
 app.listen(3000, function () {
     console.log("Server started on port 3000.");
 });
 
 app.get("/", function (req, res) {
+    Item.find({})
+        .then(function (foundItems) {
+            if (foundItems == 0) {
+                Item.insertMany(defaultItems)
+                    .then(function () {
+                        console.log("Succesfully saved default items to DB.");
+                    })
+                    .catch(function (error, docs) {
+                        console.log(error);
+                    });
 
-    res.render("list", { listTitle: "Today", nextItems: items });
+                res.redirect("/");
+            } else {
+                res.render("list", { listTitle: "Today", nextItems: foundItems });
+            }
+        });
 });
 
 app.post("/", function (req, res) {
@@ -61,9 +67,30 @@ app.post("/", function (req, res) {
         workItems.push(req.body.nextItem);
         res.redirect("/work");
     } else {
-        items.push(req.body.nextItem);
+        const itemName = req.body.nextItem;
+        
+        const item = new Item({
+            name: itemName
+        });
+
+        item.save();
+
         res.redirect("/");
     }
+});
+
+app.post("/delete", function(req,res){
+    const checkedItemId = req.body.checkbox;
+
+    Item.findByIdAndRemove(checkedItemId)
+        .then(function() {
+            console.log("Succesfully deleted checked item");
+            res.redirect("/");
+        })
+        .catch(function(err, items){
+            console.log(err);
+        });
+
 });
 
 app.get("/work", function (req, res) {
