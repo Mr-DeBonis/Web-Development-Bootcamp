@@ -1,0 +1,14 @@
+# JS node_modules
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
+# confidential keys
+.env
+
+# Ignore these files
+scraps.js
+list2.js
+app2.ejs
+date.js
