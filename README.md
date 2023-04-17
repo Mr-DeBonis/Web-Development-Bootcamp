@@ -7,6 +7,7 @@
   - [Mongo shell](#mongo-shell)
   - [Add mongo to git bash](#add-mongo-to-git-bash)
     - [Add to environment Path](#add-to-environment-path)
+- [Deploy to Heroku](#deploy-to-heroku)
 
 
 # The Complete 2022 Web Development Bootcamp
@@ -35,3 +36,13 @@ alias mongosh="C:/Program\ Files/mongosh-1.8.0-win32-x64/bin/mongosh.exe"
 ``` 
 ### Add to environment Path
 This is useful to use it from powershell or command prompt. [Follow this guide](https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12385746#questions/18110616)
+
+# Deploy to Heroku
+1. Make an account at [heroku.com](heroku.com)
+2. Copy this directory in another folder. 
+3. Remove `.gitignore`
+4. Create `Procfile` file with content:
+
+```
+web: node app.js
+```
