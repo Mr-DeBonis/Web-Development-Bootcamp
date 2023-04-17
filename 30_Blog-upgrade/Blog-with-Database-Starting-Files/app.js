@@ -14,7 +14,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect("mongodb://0.0.0.0:27017/blogDB", { useNewUrlParser: true });
@@ -28,62 +28,58 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model("Post", postSchema);
 
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
 
   Post.find({})
-    .then(function (foundPosts){
+    .then(function (foundPosts) {
       res.render("home", {
         startingContent: homeStartingContent,
         posts: foundPosts
-        });
-    })
+      });
+    });
 });
 
-app.get("/about", function(req, res){
-  res.render("about", {aboutContent: aboutContent});
+app.get("/about", function (req, res) {
+  res.render("about", { aboutContent: aboutContent });
 });
 
-app.get("/contact", function(req, res){
-  res.render("contact", {contactContent: contactContent});
+app.get("/contact", function (req, res) {
+  res.render("contact", { contactContent: contactContent });
 });
 
-app.get("/compose", function(req, res){
+app.get("/compose", function (req, res) {
   res.render("compose");
 });
 
-app.post("/compose", function(req, res){
+app.post("/compose", function (req, res) {
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody
   });
 
   post.save()
-  .then(function(){
+    .then(function () {
       // Only redirect if posts is succesfully saved in DB
       console.log("Post saved to DB");
       res.redirect("/");
     })
-    .catch(function(error,docs){
+    .catch(function (error, docs) {
       console.log(error);
     });
 });
 
-app.get("/posts/:postName", function(req, res){
-  const requestedTitle = _.lowerCase(req.params.postName);
-
-  posts.forEach(function(post){
-    const storedTitle = _.lowerCase(post.title);
-
-    if (storedTitle === requestedTitle) {
+app.get("/posts/:postId", function (req, res) {
+  const requestedPostId = req.params.postId;
+  
+  Post.findById(requestedPostId)
+    .then(function (post) {
       res.render("post", {
         title: post.title,
         content: post.content
       });
-    }
-  });
-
+    });
 });
 
-app.listen(3000, function() {
+app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
