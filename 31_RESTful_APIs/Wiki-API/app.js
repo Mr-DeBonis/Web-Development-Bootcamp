@@ -5,6 +5,16 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 
+const app = express();
+
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(express.static("public"));
+
 mongoose.connect("mongodb://0.0.0.0:27017/wikiDB", { useNewUrlParser: true });
 
 const articleSchema = new mongoose.Schema({
@@ -14,9 +24,19 @@ const articleSchema = new mongoose.Schema({
 
 const Article = new mongoose.model("Article", articleSchema);
 
-Article.find({})
-    .then(docs => {
-        docs.forEach(doc => {
-            console.log(doc);
+app.listen(3000, function () {
+    console.log("Server started on port 3000");
+})
+
+app.get("/articles", function (req, res) {
+    Article.find({})
+        .then(foundArticles => {
+            res.send(foundArticles);
+        })
+        .catch(error => {
+            res.send(error);
         });
-    })
+    
+});
+
+
