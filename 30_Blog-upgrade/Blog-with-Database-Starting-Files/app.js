@@ -27,13 +27,16 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model("Post", postSchema);
 
-let posts = [];
 
 app.get("/", function(req, res){
-  res.render("home", {
-    startingContent: homeStartingContent,
-    posts: posts
-    });
+
+  Post.find({})
+    .then(function (foundPosts){
+      res.render("home", {
+        startingContent: homeStartingContent,
+        posts: foundPosts
+        });
+    })
 });
 
 app.get("/about", function(req, res){
@@ -49,26 +52,20 @@ app.get("/compose", function(req, res){
 });
 
 app.post("/compose", function(req, res){
-  /*
-  const post = {
-    title: req.body.postTitle,
-    content: req.body.postBody
-  };
-
-  posts.push(post);
-  */
-
   const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody
   });
 
-  post.save();
-  
-  console.log("Post saved to DB");
-
-  res.redirect("/");
-
+  post.save()
+  .then(function(){
+      // Only redirect if posts is succesfully saved in DB
+      console.log("Post saved to DB");
+      res.redirect("/");
+    })
+    .catch(function(error,docs){
+      console.log(error);
+    });
 });
 
 app.get("/posts/:postName", function(req, res){
