@@ -90,4 +90,16 @@ app.route("/articles/:articleTitle")
             .catch(error => {
                 res.send(error);
             })
+    })
+
+    .patch(function (req, res) {
+        Article.updateOne({ title: req.params.articleTitle },
+            { $set: req.body })
+            .then(function () {
+                res.send("Succesfully updated the article.");
+            })
+            .catch(error => {
+                res.send(error);
+            })
     });
+
