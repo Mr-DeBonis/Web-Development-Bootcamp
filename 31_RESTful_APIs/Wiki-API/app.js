@@ -72,7 +72,6 @@ app.route("/articles")
 app.route("/articles/:articleTitle")
 
     .get(function (req, res) {
-
         Article.findOne({ title: req.params.articleTitle })
             .then(foundArticle => {
                 res.send(foundArticle);
@@ -80,6 +79,15 @@ app.route("/articles/:articleTitle")
             .catch(error => {
                 res.send("No articles matching that title was found.");
             });
+    })
 
+    .put(function (req, res) {
+        Article.replaceOne({ title: req.params.articleTitle },
+            { title: req.body.title, content: req.body.content })
+            .then(function () {
+                res.send("Succesfully replaced the article.");
+            })
+            .catch(error => {
+                res.send(error);
+            })
     });
-
