@@ -36,7 +36,6 @@ app.get("/articles", function (req, res) {
     .catch(error => {
         res.send(error);
     });
-    
 });
 
 app.post("/articles", function (req, res) {
@@ -57,3 +56,12 @@ app.post("/articles", function (req, res) {
     });
 });
 
+app.delete("/articles", function (req, res) {
+    Article.deleteMany()
+    .then(function () {
+        res.send("Succesfully deleted all the articles.");
+    })
+    .catch(error => {
+        res.send(error);
+    });
+});
