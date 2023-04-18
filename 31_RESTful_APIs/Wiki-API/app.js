@@ -67,5 +67,19 @@ app.route("/articles")
             });
     });
 
+///////////// Requests targeting specific articles /////////////
 
+app.route("/articles/:articleTitle")
+
+    .get(function (req, res) {
+
+        Article.findOne({ title: req.params.articleTitle })
+            .then(foundArticle => {
+                res.send(foundArticle);
+            })
+            .catch(error => {
+                res.send("No articles matching that title was found.");
+            });
+
+    });
 
