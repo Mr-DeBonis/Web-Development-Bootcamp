@@ -101,5 +101,15 @@ app.route("/articles/:articleTitle")
             .catch(error => {
                 res.send(error);
             })
+    })
+
+    .delete(function (req, res) {
+        Article.deleteOne({ title: req.params.articleTitle })
+            .then(function () {
+                res.send("Succesfully deleted the corresponding article.");
+            })
+            .catch(errr => {
+                res.send(error);
+            });
     });
 
