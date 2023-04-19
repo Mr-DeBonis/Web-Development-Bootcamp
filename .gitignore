@@ -3,3 +3,4 @@ node_modules
 .gitsecret/keys/random_seed
 !*.secret
 20_API/Newsletter-Signup/keys.json
+package*.json
